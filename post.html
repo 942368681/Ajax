@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		用户名：<input type="text" id="user"/><span id="span"></span>
+		<script type="text/javascript">
+			/*
+				1.post不用在open这来拼接字段，在send这来拼接
+		
+				2.在send之前要设置一个请求头。 
+			*/
+			var user=document.getElementById('user');
+			var span=document.getElementById('span');
+			user.onblur=function (){
+				var ajax=new XMLHttpRequest();
+				ajax.open('get','php/get_json.php');
+				//添加请求头
+				ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+				//send这来拼接
+				ajax.send('user='+user.value);
+				//等待服务器响应
+				ajax.onload=function (){
+					//转
+					var data=JSON.parse(ajax.responseText);
+					span.innerHTML=data.msg;
+				};
+			};
+			
+		</script>
+	</body>
+</html>

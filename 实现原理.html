@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		用户名：<input type="text" id="user"/><span id="span"></span>
+		<script type="text/javascript">
+			/*
+				AJAX:
+					Asynchronous JavaScript and XML(异步的js与XML)
+					
+					XML是一种数据格式:
+						'<person>
+							<name>小强</name>
+							<age>23</age>
+						</person>'
+					json
+						'{name:"小青",age:18}'
+					
+					不管什么格式，服务器返回来的数据都是字符串！
+				
+					一种前端与后端的数据交互方式（前后端分离的技术）。
+						1.减少服务器压力
+						2.优化用户体验，无刷新页面就能访问数据
+						3.使用异步方式与服务器通信，不需要打断用户的操作，
+						具有更加迅速的响应能力。
+					
+					不能在本地运行代码,因为后端的文件必须要在服务器下运行。 
+			*/
+			/*
+				Ajax原理
+					打电话机制:
+						1.买部手机
+						2.输入电话号码
+						3.拨号
+						4.等待对方接电话
+						5.通话
+					原生写法：
+						1.创建一个ajax对象
+							const ajax=new XMLHttpRequest();
+						2.填写请求地址
+							mothod:使用什么方式请求 
+							url:请求的地址
+							boolean：是否异步（默认为true）
+							
+							ajax.open('get','php/get.php?user='+user.value)
+						3.发送请求
+							ajax.send()
+						4.等待服务器响应
+							ajax.onload=function (data){
+								//数据都是字符串，要转
+								//ajax.responseText：后端处理完成之后返回的数据
+								var data=JSON.parse(ajax.responseText)
+								//5.通话
+								span.innerHtml=data.msg
+							};
+			*/
+			/*
+				JQ写法
+					$.ajax({
+						url:'后端接口地址',
+						data:{
+							拼接的字段:需要拼接的数据（前端传给后端的数据）
+						},
+						//当服务器处理完之后返回的结果。
+						success:function(data){//回调。
+							console.log(data);
+						}
+					})
+					
+					$('#user').blur(function (){
+						$.ajax({
+							url:'php/get.php',
+							data:{
+								user:$('#user').val()
+							},
+							dataType:'json',
+							success:function (data){
+								$('#span').text(data.msg);
+							}
+						})
+					});
+			*/
+		</script>
+	</body>
+</html>
