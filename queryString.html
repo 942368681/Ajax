@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*
+				data : {
+					user:'leo',
+					pass:123456
+				}
+				转
+				user=leo&pass=123456 
+			*/
+			var obj = {
+				user:'leo',
+				pass:123456
+			}
+			var arr=[];
+			for (var attr in obj) {
+				arr.push(attr+'='+obj[attr]);
+			}
+			console.log(arr.join('&'));
+			/*
+				反转 
+			*/
+			var str = 'user=leo&pass=123456';
+			var arr1=str.split('&');
+			var obj={};
+			for (var i=0;i<arr1.length;i++) {
+				var arr2=arr1[i].split('=');
+				obj[arr2[0]]=arr2[1];
+			}
+			console.log(obj);
+		</script>
+	</body>
+</html>

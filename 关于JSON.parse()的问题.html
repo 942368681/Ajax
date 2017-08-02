@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*
+				标准JSON格式
+					'{"code": 0, "msg": "用户名可以注册！"}'
+					
+				只有标准JSON格式才能够被JSON.parse成功转成对象
+				如果不是标准JSON格式，可以用eval()
+				
+					eval():
+						让字符串能够执行js代码
+				
+			*/
+			var obj = "{'name':123}"
+			console.log(eval('('+ obj + ')'));  //Object {name: 123}
+		</script>
+	</body>
+</html>

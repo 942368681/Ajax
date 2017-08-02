@@ -49,7 +49,7 @@
 						3.发送请求
 							ajax.send()
 						4.等待服务器响应
-							ajax.onload=function (data){
+							ajax.onload=function (){
 								//数据都是字符串，要转
 								//ajax.responseText：后端处理完成之后返回的数据
 								var data=JSON.parse(ajax.responseText)
