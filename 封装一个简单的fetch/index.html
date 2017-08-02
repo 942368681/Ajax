@@ -17,9 +17,15 @@
 				},
 				dataType:'json'
 			});
-			fetch.then(function (data){
+			//下面两种写法
+			/*fetch.then(function (data){
 				console.log(data);
 			}).catch(function (data2){
+				console.log(data2);
+			})*/
+			fetch.then(function (data){
+				console.log(data);
+			},function (data2){
 				console.log(data2);
 			})
 		};
