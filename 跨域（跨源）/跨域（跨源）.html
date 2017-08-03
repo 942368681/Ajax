@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button id="btn">按钮</button>
+		<script type="text/javascript">
+			/*
+				ajax的缺点（主要两点）：
+					1.不支持浏览器回退前进
+					2.安全问题 
+					
+				跨域（跨源）：
+					跨出一个范围
+					源:
+						同源策略
+							同源策略（Same origin policy）是一种约定，
+							它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，
+							则浏览器的正常功能可能都会受到影响。
+							可以说Web是构建在同源策略基础之上的，
+							浏览器只是针对同源策略的一种实现。
+					同源：
+						同域名、同端口、同协议
+					跨源:
+						不同域名 || 不同端口 || 不同协议
+						有一个不同就叫跨源
+						
+					域名:
+						ip地址的取的别名。
+					端口:
+						指计算机内部或交换机路由器内的端口，不可见。
+					协议:
+						HTTP/HTTPS 网络超文本传输协议 / 安全网络超文本传输协议
+						file：本地协议
+						ftp:文件传输协议
+						
+					解决跨域问题：
+						1.新版本XMLHttpRequest + 后端设置请求头权限
+							Access-Control-Allow-Origin
+						2.服务器代理
+							使用服务器文件（如php等），在默认情况下可以直接跨域
+							那么只要把这个服务器文件与请求文件同源就可以实现跨域
+						3.flash
+						4.iframe
+						5.jsonp
+							JSONP是一个非官方的协议，它允许在服务器端集成Script tags
+							返回至客户端，通过javascript callback的形式实现
+							跨域访问
+							JSONP即JSON with Padding
+							json格式的数据
+					
+					一些跨域标签：
+						link
+						img src=""  专门解析图片
+						script src=""  专门解析js的。
+						文件是什么内容不是由后缀名决定的，而是内容决定的。
+						script会尽可能的解析js相关的代码。
+						
+					jsonp实现:
+						1、
+							首先数据必须要为一个函数名加括号的数据
+							fn([{},{},{}]); 
+						2、
+							需要在***全局***下声明一个与数据的函数名一致的函数。
+							function fn(){}  	//能找到
+							
+							window.onload = function(){  
+								function fn(){}
+							}  					//全局不能找到fn
+							
+						3、
+							想在哪里使用就创建一个srcipt标签，src等于数据的地址即可
+			*/
+			//在全局声明一个与数据的函数名一致的函数
+			function fn(data){
+				console.log(data);
+			}
+			const btn = document.getElementById('btn');
+			//点击的时候需要使用这个数据
+			btn.onclick = function(){
+				const oS = document.createElement('script');
+				oS.src = '数据地址';
+				document.getElementsByTagName('head')[0].appendChild(oS);
+			}
+		</script>
+	</body>
+</html>

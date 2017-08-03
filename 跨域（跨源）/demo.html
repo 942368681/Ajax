@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" name="txt" id="txt" />
+		<ul id="ul">
+			
+		</ul>
+		<script type="text/javascript">
+			const txt = document.getElementById('txt');
+			const ul = document.getElementById('ul');
+			function fn(data){
+				console.log(data);
+				var s='';
+				for (var i=0;i<data.s.length;i++) {
+					s+='<li>'+data.s[i]+'</li>';
+				}
+				ul.innerHTML=s;
+			};
+			txt.onkeyup=function (){
+				const oS=document.createElement('script');
+				//百度的数据
+				oS.src='https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd='+txt.value+'&cb=fn';
+				document.getElementsByTagName('head')[0].appendChild(oS);
+			};
+		</script>
+	</body>
+</html>
