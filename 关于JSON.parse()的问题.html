@@ -15,10 +15,19 @@
 				
 					eval():
 						让字符串能够执行js代码
+						
+				但是eval有安全问题，用new Function方法转
+					
+					var obj = "{'name':123}";
+					var data = new Function('','return'+obj)();
+					console.log(data);
+				
 				
 			*/
 			var obj = "{'name':123}"
 			console.log(eval('('+ obj + ')'));  //Object {name: 123}
+			var data=new Function('','return'+obj)();
+			console.log(data);
 		</script>
 	</body>
 </html>
