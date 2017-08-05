@@ -19,13 +19,23 @@
 					s+='<li>'+data.s[i]+'</li>';
 				}
 				ul.innerHTML=s;
+				/*var oS=document.getElementsByTagName('head')[0].getElementsByTagName('script')[0];
+				oS.remove();*/
 			};
 			txt.onkeyup=function (){
 				const oS=document.createElement('script');
 				//百度的数据
 				oS.src='https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd='+txt.value+'&cb=fn';
 				document.getElementsByTagName('head')[0].appendChild(oS);
+				oS.remove();
 			};
+			/*
+				当创建script并且插入到页面上的时候（动态加载），
+				是异步的（DOM操作都是异步），这时候本次请求已经提交，
+				后端只要返回正确的数据fn()，那不管什么时候删除script标签，
+				前端都会接收到后端的数据，所以在渲染页面之后删除
+				和在创建之后立马删除是一样的，都会拿到数据并渲染页面
+			*/
 		</script>
 	</body>
 </html>

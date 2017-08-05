@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*
+				jsonp实现:
+						1、
+							后端返回的数据必须要为一个函数名加括号的数据
+							fn([{},{},{}]); 
+						2、
+							需要在***全局***下声明一个与数据的函数名一致的函数。
+							function fn(){}  	//能找到
+							
+							window.onload = function(){  
+								function fn(){}
+							}  					//全局不能找到fn
+							
+						3、
+							想在哪里使用就创建一个srcipt标签，src等于数据的地址即可 
+				
+				几个接口：
+					//搜狗搜索
+					//	https://www.sogou.com/suggnew/ajajjson?key=sss&type=web&ori=yes&pr=web&abtestid=5&ipn=&t=1501816973032&suguuid=fdfab536-a9f3-4acf-aab6-ddade6dc2bfe&ip=218.247.211.50&iploc=1100&suid=7DE0F2B63665860A5890A7DB00078D9F&yyid=null&pid=sogou&policyno=null&mfp=null&hs=https&mp=1&prereq_a=&sugsuv=1485215571769602&sugtime=1501816980634
+
+					//360搜索
+					//	https://sug.so.360.cn/suggest?callback=fn&encodein=utf-8&encodeout=utf-8&format=json&fields=word&word=miaov
+					
+					//百度搜索
+					//	https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=ss&json=1&p=3&sid=1452_21125_17001_20928&req=2&csor=2&pwd=s&cb=jQuery110208274196507354024_1501816637639&_=1501816637644
+			*/
+			
+			/*
+				注意：
+					拿到接口，第一件事，直接访问接口，看看是jsonp还是ajax
+			*/
+		</script>
+	</body>
+</html>

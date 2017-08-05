@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" name="txt" id="txt" value="" />
+		<ul id="ul">
+			
+		</ul>
+		<script type="text/javascript">
+			let txt=document.getElementById('txt');
+			let ul=document.getElementById('ul');
+			txt.onkeyup=function (){
+				jsonp({
+					url:'https://sug.so.360.cn/suggest',
+					data:{
+						callback:'fn',
+						word:txt.value
+					}
+				});
+			};
+			function jsonp(obj){
+				let settings={
+					url:'',
+					data:{}
+				};
+				Object.assign(settings,obj);
+				let arr=[];
+				for (var attr in settings.data) {
+					arr.push(attr+'='+settings.data[attr]);
+				}
+				let str=arr.join('&');
+				let oS=document.createElement('script');
+				oS.src=settings.url+'?'+str;
+				document.getElementsByTagName('head')[0].appendChild(oS);
+				oS.remove();
+			};
+			function fn(data){
+				console.log(data);
+				let html='';
+				data.s.forEach(function (e,i){
+					if (i<=4) {
+						html+=`<li>
+									<a href="https://www.so.com/s?ie=utf-8&fr=none&src=home_suggst_b&q=${e}&eci=e0b1cbb7bcab085f&nlpv=suggest_b">${e}</a>
+								</li>`;
+					}
+				});
+				ul.innerHTML=html;
+			};
+			/*
+				把fn最好放在封装的jsonp方法内部，方法见jsonp_3
+			*/
+		</script>
+	</body>
+</html>

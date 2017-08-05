@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" name="txt" id="txt" value="" />
+		<ul id="ul">
+			
+		</ul>
+		<script type="text/javascript">
+			/*
+				为了把处理数据逻辑提出去，在封装的jsonp方法中添加一个success函数
+				把数据逻辑写在调用这个方法的时候的jsonp中
+			*/
+			let txt=document.getElementById('txt');
+			let ul=document.getElementById('ul');
+			txt.onkeyup=function (){
+				jsonp({
+					url:'https://sug.so.360.cn/suggest',
+					data:{
+						word:txt.value
+					},
+					success:function (data){
+						let html='';
+						data.s.forEach(function (e,i){
+							if (i<=4) {
+								html+=`<li>
+											<a href="https://www.so.com/s?ie=utf-8&fr=none&src=home_suggst_b&q=${e}&eci=e0b1cbb7bcab085f&nlpv=suggest_b">${e}</a>
+										</li>`;
+							}
+						});
+						ul.innerHTML=html;
+					}
+				});
+			};
+			function jsonp(obj){
+				let settings={
+					url:'',
+					data:{},
+					success:function (){}
+				};
+				Object.assign(settings,obj);
+				let fnName='jQuery'+Math.random()+(+new Date);
+				fnName=fnName.replace('0.','_');
+				window[fnName]=function (data){
+					settings.success(data);
+				};
+				let arr=[];
+				for (var attr in settings.data) {
+					arr.push(attr+'='+settings.data[attr]);
+				}
+				let str=arr.join('&');
+				let oS=document.createElement('script');
+				oS.src=settings.url+'?'+'callback='+fnName+'&'+str;
+				document.getElementsByTagName('head')[0].appendChild(oS);
+				oS.remove();
+			};
+		</script>
+	</body>
+</html>
+

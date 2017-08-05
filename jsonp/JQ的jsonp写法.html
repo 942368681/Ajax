@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" name="txt" id="txt" value="" />
+		<ul id="ul">
+			
+		</ul>
+		<script src="jquery-3.2.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$('#txt').keyup(function (){
+				$.ajax({
+					dataType:'jsonp',
+					url:'https://sug.so.360.cn/suggest?',
+					data:{
+						word:$('#txt').val()
+					},
+					success:function (data){
+						let html='';
+						data.s.forEach(function (e,i){
+							if (i<=4) {
+								html+=`<li>
+											<a href="https://www.so.com/s?ie=utf-8&fr=none&src=home_suggst_b&q=${e}&eci=e0b1cbb7bcab085f&nlpv=suggest_b">${e}</a>
+										</li>`;
+							}
+						});
+						ul.innerHTML=html;
+					}
+				});
+			});
+		</script>
+	</body>
+</html>

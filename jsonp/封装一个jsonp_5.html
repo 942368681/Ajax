@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" name="txt" id="txt" value="" />
+		<ul id="ul">
+			
+		</ul>
+		<script type="text/javascript">
+			/*
+				把callback放在对象下面，这样一次循环即可得到结果
+			*/
+			let txt=document.getElementById('txt');
+			let ul=document.getElementById('ul');
+			txt.onkeyup=function (){
+				jsonp({
+					url:'https://sug.so.360.cn/suggest',
+					data:{
+						word:txt.value
+					},
+					cb:'callback',
+					success:function (data){
+						let html='';
+						data.s.forEach(function (e,i){
+							if (i<=4) {
+								html+=`<li>
+											<a href="https://www.so.com/s?ie=utf-8&fr=none&src=home_suggst_b&q=${e}&eci=e0b1cbb7bcab085f&nlpv=suggest_b">${e}</a>
+										</li>`;
+							}
+						});
+						ul.innerHTML=html;
+					}
+				});
+			};
+			function jsonp(obj){
+				let settings={
+					url:'',
+					data:{},
+					cb:'cb',
+					success:function (){}
+				};
+				Object.assign(settings,obj);
+				let fnName='jQuery'+Math.random()+(+new Date);
+				fnName=fnName.replace('0.','_');
+				//把callback放在对象下面
+				settings.data[settings.cb]=fnName;
+				window[fnName]=function (data){
+					settings.success(data);
+				};
+				let arr=[];
+				for (var attr in settings.data) {
+					arr.push(attr+'='+settings.data[attr]);
+				}
+				let str=arr.join('&');//word=txt.value&callback=fnName;
+				let oS=document.createElement('script');
+				oS.src=settings.url+'?'+str;
+				document.getElementsByTagName('head')[0].appendChild(oS);
+				oS.remove();
+			};
+		</script>
+	</body>
+</html>
+
+
