@@ -10,7 +10,7 @@
 			/*
 				AJAX:
 					Asynchronous JavaScript and XML(异步的js与XML)
-					
+
 					XML是一种数据格式:
 						'<person>
 							<name>小强</name>
@@ -18,16 +18,16 @@
 						</person>'
 					json
 						'{name:"小青",age:18}'
-					
+
 					不管什么格式，服务器返回来的数据都是字符串！
-				
+
 					一种前端与后端的数据交互方式（前后端分离的技术）。
 						1.减少服务器压力
 						2.优化用户体验，无刷新页面就能访问数据
 						3.使用异步方式与服务器通信，不需要打断用户的操作，
 						具有更加迅速的响应能力。
-					
-					不能在本地运行代码,因为后端的文件必须要在服务器下运行。 
+
+					不能在本地运行代码,因为后端的文件必须要在服务器下运行。
 			*/
 			/*
 				Ajax原理
@@ -41,10 +41,10 @@
 						1.创建一个ajax对象
 							const ajax=new XMLHttpRequest();
 						2.填写请求地址
-							mothod:使用什么方式请求 
+							mothod:使用什么方式请求
 							url:请求的地址
 							boolean：是否异步（默认为true）
-							
+
 							ajax.open('get','php/get.php?user='+user.value)
 						3.发送请求
 							ajax.send()
@@ -59,6 +59,12 @@
 			*/
 			/*
 				JQ写法
+				JQ的ajax支持的数据类型：
+					xml
+					html
+					jsonp
+					josn
+					
 					$.ajax({
 						url:'后端接口地址',
 						data:{
@@ -69,7 +75,7 @@
 							console.log(data);
 						}
 					})
-					
+
 					$('#user').blur(function (){
 						$.ajax({
 							url:'php/get.php',
